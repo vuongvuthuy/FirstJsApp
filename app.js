@@ -19,9 +19,12 @@ const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
+
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
   process.env.MONGO_PASSWORD
-}@cluster0-ntrwp.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
+}@atlascluster.2bopiad.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?retryWrites=true`;
+
+console.log('Database connection: ' + MONGODB_URI);
 
 const app = express();
 const store = new MongoDBStore({
@@ -60,6 +63,7 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
+const usCitizenRoutes = require('./routes/us-citizen');
 
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
@@ -121,6 +125,7 @@ app.use((req, res, next) => {
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
+app.use('/uscitizen', usCitizenRoutes);
 
 app.get('/500', errorController.get500);
 
