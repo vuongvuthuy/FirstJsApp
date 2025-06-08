@@ -1,8 +1,0 @@
-{
-    "env": {
-        "MONGO_USER": "KingPheonix",
-        "MONGO_PASSWORD": "qGHiPMSQqsmuQBWX",
-        "MONGO_DEFAULT_DATABASE": "UsCitizenV2",
-        "STRIPE_KEY": "sk_test_T8OE02SHDZWLwk4TYtrWlsat"
-    }
-}

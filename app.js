@@ -19,6 +19,8 @@ const shopController = require('./controllers/shop');
 const isAuth = require('./middleware/is-auth');
 const User = require('./models/user');
 
+require('dotenv').config();
+
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
   process.env.MONGO_PASSWORD
@@ -147,7 +149,9 @@ mongoose
     // https
     //   .createServer({ key: privateKey, cert: certificate }, app)
     //   .listen(process.env.PORT || 3000);
-      app.listen(process.env.PORT || 3000);
+      app.listen(process.env.PORT || 3000 , ()=> {
+          console.log(`Server running on port ${PORT}`);
+      });
   })
   .catch(err => {
     console.log(err);
