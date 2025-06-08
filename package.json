@@ -15,17 +15,9 @@
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
   "devDependencies": {
-    "@aws-amplify/backend": "^1.16.1",
-    "@aws-amplify/backend-cli": "^1.7.2",
-    "aws-cdk-lib": "^2.189.1",
-    "constructs": "^10.4.2",
-    "esbuild": "^0.25.5",
-    "nodemon": "^1.18.3",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "nodemon": "^1.18.3"
   },
   "dependencies": {
-    "aws-amplify": "^6.15.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
