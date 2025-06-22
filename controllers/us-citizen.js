@@ -55,8 +55,9 @@ exports.getCivicVersionsDescending = async (req, res, next) => {
       { $sort: { _id: -1 } }                   // Sort versions descending
     ]);
 
+    const result = versions.map(item => ({ version: item._id }));
   
-    res.json(versions);
+    res.json(result);
   } catch (err) {
     console.error('Error getting versions:', err);
     res.status(500).json({ error: 'Internal server error' });
