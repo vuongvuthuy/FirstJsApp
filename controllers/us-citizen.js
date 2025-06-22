@@ -9,10 +9,10 @@ exports.getVocabularies = (req, res, next) => {
 
   filter.version = req.query.version || 'Đề thi năm 2008';
 
-  if (req.query.type) {
-    filter.type = req.query.type;
+  if (req.query.type_ne) {
+    filter.type = { $ne: req.query.type_ne };
   } else {
-    filter.type = 'H';
+    filter.type = req.query.type || 'H';
   }
 
   const sortCondition = { 'category' : 1 , 'index' : 1 };
@@ -31,7 +31,9 @@ exports.getQuestions = (req, res, next) => {
 
   filter.version = req.query.version || 'Đề thi năm 2008';
 
-  if (req.query.type) {
+  if (req.query.type_ne) {
+    filter.type = { $ne: req.query.type_ne };
+  } else if (req.query.type) {
     filter.type = req.query.type;
   }
 
@@ -50,7 +52,9 @@ exports.getDynamicAnswers = (req, res, next) => {
     
     filter.version = req.query.version || 'Đề thi năm 2008';
 
-    if (req.query.filterCode) {
+    if (req.query.filterCode_ne) {
+      filter.filterCode = { $ne: req.query.filterCode_ne };
+    } else if (req.query.filterCode) {
       filter.filterCode = req.query.filterCode;
     }
 
@@ -67,7 +71,10 @@ exports.getInfos = (req, res, next) => {
   const filter = {};
   filter.version = req.query.version || 'Đề thi năm 2008';
 
-  if (req.query.type) {
+
+  if (req.query.type_ne) {
+    filter.type = { $ne: req.query.type_ne };
+  } else if (req.query.type) {
     filter.type = req.query.type;
   }
 
