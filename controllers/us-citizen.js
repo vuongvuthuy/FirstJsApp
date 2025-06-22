@@ -4,7 +4,20 @@ const Vocabulary = require('../models/vocabulary');
 const Question = require('../models/question');
 
 exports.getVocabularies = (req, res, next) => {
-  Vocabulary.find()
+
+  const filter = {};
+
+  filter.version = req.query.version || 'Đề thi năm 2008';
+
+  if (req.query.type) {
+    filter.type = req.query.type;
+  } else {
+    filter.type = 'H';
+  }
+
+  const sortCondition = { 'category' : 1 , 'index' : 1 };
+
+  Vocabulary.find(filter).sort(sortCondition)
   // .select('title price -_id')
   // .populate('userId', 'name')
   .then(vocabularies => {
@@ -33,6 +46,8 @@ exports.getQuestions = (req, res, next) => {
 };
 
 exports.getDynamicAnswers = (req, res, next) => {
+    const filter = {};
+    
     filter.version = req.query.version || 'Đề thi năm 2008';
 
     if (req.query.filterCode) {
