@@ -11,5 +11,6 @@ router.get('/dynamicAnswers', usCitizenController.getDynamicAnswers);
 router.get('/infos', usCitizenController.getInfos);
 router.get('/questions', usCitizenController.getQuestions);
 router.get('/vocabularies', usCitizenController.getVocabularies);
+router.get('/versions', usCitizenController.getCivicVersionsDescending);
 
 module.exports = router;

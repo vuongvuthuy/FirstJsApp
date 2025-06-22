@@ -47,6 +47,25 @@ exports.getQuestions = (req, res, next) => {
   .catch(err => console.log(err));
 };
 
+exports.getCivicVersionsDescending = async (req, res, next) => {
+  try {
+    const versions = await Question.aggregate([
+      { $match: { type: 'CIVIC' } },           // Filter documents by type
+      { $group: { _id: '$version' } },         // Group by version (distinct)
+      { $sort: { _id: -1 } }                   // Sort versions descending
+    ]);
+
+    // Return just the version values
+    const versionList = versions.map(v => v._id);
+
+    res.json(versionList);
+  } catch (err) {
+    console.error('Error getting versions:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 exports.getDynamicAnswers = (req, res, next) => {
     const filter = {};
     
