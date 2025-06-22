@@ -33,6 +33,8 @@ exports.getQuestions = (req, res, next) => {
 };
 
 exports.getDynamicAnswers = (req, res, next) => {
+    const filter = {};
+    
     filter.version = req.query.version || 'Đề thi năm 2008';
 
     if (req.query.filterCode) {
