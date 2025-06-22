@@ -11,8 +11,8 @@ exports.getVocabularies = (req, res, next) => {
 
   if (req.query.type_ne) {
     filter.type = { $ne: req.query.type_ne };
-  } else {
-    filter.type = req.query.type || 'H';
+  } else if (req.query.type) {
+    filter.type = req.query.type;
   }
 
   const sortCondition = { 'category' : 1 , 'index' : 1 };
